@@ -8,6 +8,7 @@ load_dotenv(env_path)
 SPLASH_URL = 'http://localhost:8050/render.html'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMAGES_PATH = f"{BASE_DIR}/images/"
+REPORTS_PATH = f"{BASE_DIR}/reports/"
 
 
 class DatabaseEnv:
@@ -16,3 +17,11 @@ class DatabaseEnv:
     DB_PORT: str = os.getenv('DB_PORT')
     DB_NAME: str = os.getenv('DB_NAME')
     DB_PASSWORD: str = os.getenv('DB_PASSWORD')
+
+
+class EmailEnv:
+    SENDER_EMAIL: str = os.getenv('SENDER_EMAIL')
+    SENDER_PASSWORD: str = os.getenv('SENDER_PASSWORD')
+    RECEIVER_EMAIL: str = os.getenv('RECEIVER_EMAIL')
+    SMTP_HOST: str = os.getenv('SMTP_HOST')
+    SMTP_PORT: int = int(os.getenv('SMTP_PORT'))

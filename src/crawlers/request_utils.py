@@ -2,10 +2,11 @@ import os
 
 import requests
 
+from src.utils.path_utils import create_path
+
 
 def download_file(url: str, output_path: str, filename: str) -> None:
-    if not os.path.exists(output_path):
-        os.makedirs(output_path)
+    create_path(path=output_path)
 
     full_path = os.path.join(output_path, filename)
     img_data = requests.get(url).content
