@@ -5,8 +5,11 @@ from turbocrawler import Crawler, CrawlerRequest, CrawlerResponse, ExecutionInfo
 from turbocrawler.engine.control import StopCrawler
 import json
 
+from src.application.article.article_error import ArticleError
+from src.application.article.article_service import ArticleService
 from src.crawlers.request_utils import download_file
 from src.crawlers.selenium_manager import get_selenium_webdriver
+from src.data.dtos.articles_dto import CreateArticleDTO
 from src.settings import IMAGES_PATH
 
 
@@ -68,7 +71,12 @@ class TimesOfMaltaCrawler(Crawler):
 
         # Download main image
         css_main_image = 'img[class="wi-WidgetSubCompType_13-img wi-WidgetImage loaded"]'
-        main_image_url = selector.css_first(css_main_image).attrs.get('src')
+        main_image_url = selector.css_first(css_main_image)
+        if main_image_url:
+            main_image_url = main_image_url.attrs.get('src')
+        else:
+            cls.logger.info(f"{crawler_request.url} article doesn't have image")
+            return
         img_name = main_image_url.split("/")[-1]
         download_file(main_image_url, output_path=IMAGES_PATH, filename=img_name)
 
@@ -83,7 +91,13 @@ class TimesOfMaltaCrawler(Crawler):
             "reading_time": reading_time,
             "img_path": img_name,
         }
-        print(data)
+        new_article = CreateArticleDTO(**data)
+        _, err = ArticleService.insert_article(new_article)
+        if err:
+            if err == ArticleError.duplicate_entry:
+                cls.logger.info(f"{data['url']} article already saved")
+                return
+        cls.logger.info(data)
 
     @classmethod
     def stop_crawler(cls, execution_info: ExecutionInfo) -> None:
