@@ -1,9 +1,10 @@
+import json
+
 import requests
 from selectolax.lexbor import LexborHTMLParser
 from selenium_toolkit import SeleniumToolKit
 from turbocrawler import Crawler, CrawlerRequest, CrawlerResponse, ExecutionInfo, ExtractRule
 from turbocrawler.engine.control import StopCrawler
-import json
 
 from src.application.article.article_error import ArticleError
 from src.application.article.article_service import ArticleService

@@ -1,9 +1,9 @@
-from src.crawlers.timesofmalta_crawler import TimesOfMaltaCrawler
-from src.settings import REPORTS_PATH
 from turbocrawler import CrawlerRunner
 
+from src.crawlers.timesofmalta_crawler import TimesOfMaltaCrawler
 from src.data.db_orm.migrations import run_migrations
 from src.data.repository.articles_repository import ArticlesRepository
+from src.settings import REPORTS_PATH
 from src.utils.date_utils import now_timestamp_str
 from src.utils.email_utils import send_email
 from src.utils.sheets_utils import create_sheet

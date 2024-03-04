@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Date, Integer, String, Text, ARRAY
+from sqlalchemy import ARRAY, Column, Integer, String
 
 from src.data.db_orm.tables.base import Base
 

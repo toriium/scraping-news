@@ -1,4 +1,5 @@
 import requests
+
 from src.settings import SPLASH_URL
 
 

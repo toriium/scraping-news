@@ -1,8 +1,9 @@
 import time
 
-from src.data.db_orm.connection import get_writing_db_url
-from alembic.config import Config
 from alembic import command
+from alembic.config import Config
+
+from src.data.db_orm.connection import get_writing_db_url
 from src.settings import BASE_DIR
 
 

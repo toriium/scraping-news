@@ -1,10 +1,10 @@
 from sqlalchemy import text
 
-from src.domain.article import ArticleDomain
-from src.data.db_orm.query_obj import delete_obj, insert_obj, select_all_obj, update_obj, create_reading_session
+from src.data.db_orm.query_obj import create_reading_session, insert_obj, select_all_obj
 from src.data.db_orm.tables.tbl_articles import TblArticles
 from src.data.dtos.articles_dto import ArticleDTO
 from src.data.errors.sql_error import SQLError
+from src.domain.article import ArticleDomain
 
 
 class ArticlesRepository:
