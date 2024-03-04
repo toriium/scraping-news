@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "task-growth"
+version = "0.1.0"
+description = ""
+authors = ["toriium <zezim@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+turbocrawler = "^0.0.2rc1"
+pydantic = "^2.6.3"
+requests = "^2.31.0"
+parsel = "^1.8.1"
+selenium = "^4.18.1"
+selenium-toolkit = "^0.0.6"
+sqlalchemy = "^2.0.27"
+alembic = "^1.13.1"
+psycopg2-binary = "^2.9.9"
+python-dotenv = "^1.0.1"
+pandas = "^2.2.1"
+openpyxl = "^3.1.2"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
