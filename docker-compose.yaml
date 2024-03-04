@@ -21,11 +21,3 @@ services:
     shm_size: 2gb
     ports:
       - 4444:4444
-
-  splash_service:
-    image: scrapinghub/splash
-    container_name: container_splash
-    command: --maxrss 2048 --max-timeout 300 --disable-lua-sandbox --verbosity 1
-    ports:
-      - "8050:8050"
-    restart: unless-stopped
