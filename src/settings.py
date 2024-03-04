@@ -22,6 +22,6 @@ class DatabaseEnv:
 class EmailEnv:
     SENDER_EMAIL: str = os.getenv('SENDER_EMAIL')
     SENDER_PASSWORD: str = os.getenv('SENDER_PASSWORD')
-    RECEIVER_EMAIL: str = os.getenv('RECEIVER_EMAIL')
+    RECEIVERS_EMAIL: str = os.getenv('RECEIVERS_EMAIL')
     SMTP_HOST: str = os.getenv('SMTP_HOST')
     SMTP_PORT: int = int(os.getenv('SMTP_PORT'))

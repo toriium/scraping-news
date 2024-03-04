@@ -9,7 +9,7 @@ from pathlib import Path
 from src.settings import EmailEnv
 
 
-def create_email_attachments(message: MIMEMultipart, attachment_file_paths: list[str]) -> MIMEMultipart:
+def create_email_attachments(message: MIMEMultipart, attachment_file_paths: list[str] = None) -> MIMEMultipart:
     if not attachment_file_paths:
         return message
     for file_path in attachment_file_paths:
@@ -29,12 +29,11 @@ def create_email_attachments(message: MIMEMultipart, attachment_file_paths: list
     return message
 
 
-def send_email(subject, body: str, attachment_file_paths: list[str]):
+def send_email(subject, body: str, attachment_file_paths: list[str] = None):
     message = MIMEMultipart()
     message["From"] = EmailEnv.SENDER_EMAIL
-    message["To"] = EmailEnv.RECEIVER_EMAIL
+    message["To"] = EmailEnv.RECEIVERS_EMAIL
     message["Subject"] = subject
-    message["Bcc"] = EmailEnv.RECEIVER_EMAIL
 
     message.attach(MIMEText(body, "plain"))
 
@@ -44,7 +43,7 @@ def send_email(subject, body: str, attachment_file_paths: list[str]):
 
     with smtplib.SMTP(EmailEnv.SMTP_HOST, EmailEnv.SMTP_PORT) as server:
         server.login(EmailEnv.SENDER_EMAIL, EmailEnv.SENDER_PASSWORD)
-        server.sendmail(EmailEnv.SENDER_EMAIL, EmailEnv.RECEIVER_EMAIL, text)
+        server.sendmail(EmailEnv.SENDER_EMAIL, EmailEnv.RECEIVERS_EMAIL, text)
 
 
 if __name__ == '__main__':
