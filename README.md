@@ -1,4 +1,4 @@
-# task-growth
+# scraping-news
 
 # Dependencies
 - docker
